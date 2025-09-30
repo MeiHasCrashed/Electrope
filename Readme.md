@@ -1,6 +1,6 @@
 ﻿# Electrope
 
-A library to help with Dalamud plugin development.
+A library intended to help with Dalamud plugin development.
 
 
 > [!CAUTION]
