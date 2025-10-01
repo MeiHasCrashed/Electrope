@@ -8,10 +8,10 @@ using JetBrains.Annotations;
 
 namespace Electrope.IoC;
 
-internal struct DalamudServiceHelper<T> where T : class
+internal class DalamudServiceHelper<T> where T : class
 {
     [PluginService, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-    private T? Service { get; }
+    internal T? Service { get; set; }
 
     public static T GetService(IDalamudPluginInterface pluginInterface)
     {
