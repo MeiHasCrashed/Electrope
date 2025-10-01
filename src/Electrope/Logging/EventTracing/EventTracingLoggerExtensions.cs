@@ -9,9 +9,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Electrope.Logging.EventTracing;
 
-public static class EventTracingLoggingExtensions
+public static class EventTracingLoggerExtensions
 {
-    public static ILoggingBuilder AddEventTracingLogging(this ILoggingBuilder builder, Guid providerId)
+    public static ILoggingBuilder AddEventTracingLogger(this ILoggingBuilder builder, Guid providerId)
     {
         // EventTracing is only supported on Windows (ETW)
         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
