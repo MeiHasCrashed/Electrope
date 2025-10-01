@@ -16,7 +16,7 @@ namespace Electrope.Hosting;
 public static class ElectropeHost
 {
     [PublicAPI]
-    public static IHostApplicationBuilder CreateDefaultBuilder(ElectropeHostOptions options)
+    public static HostApplicationBuilder CreateDefaultBuilder(ElectropeHostOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
 
