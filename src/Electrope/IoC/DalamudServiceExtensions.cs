@@ -3,12 +3,14 @@
 
 using System;
 using Dalamud.Plugin;
+using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Electrope.IoC;
 
 public static class DalamudServiceExtensions
 {
+    [PublicAPI]
     public static IServiceCollection AddDalamudService<T>(this IServiceCollection services) where T : class
     {
         services.AddSingleton<T>(provider =>

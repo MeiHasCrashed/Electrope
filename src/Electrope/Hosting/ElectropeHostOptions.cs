@@ -2,10 +2,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Dalamud.Plugin;
-using Dalamud.Plugin.Services;
+using JetBrains.Annotations;
 
 namespace Electrope.Hosting;
 
+[PublicAPI]
 public class ElectropeHostOptions
 {
     /// <summary>

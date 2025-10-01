@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System;
-using System.Text;
 using Dalamud.Plugin.Services;
 using Microsoft.Extensions.Logging;
 using Serilog.Events;

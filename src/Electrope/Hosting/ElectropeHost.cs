@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System;
-using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 using Electrope.IoC;
 using Electrope.Logging.Dalamud;
 using Electrope.Logging.EventTracing;
+using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -15,6 +15,7 @@ namespace Electrope.Hosting;
 
 public static class ElectropeHost
 {
+    [PublicAPI]
     public static IHostApplicationBuilder CreateDefaultBuilder(ElectropeHostOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);

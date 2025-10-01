@@ -4,13 +4,14 @@
 using System;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using JetBrains.Annotations;
 
 namespace Electrope.IoC;
 
 internal struct DalamudServiceHelper<T> where T : class
 {
-    [PluginService]
-    private T? Service { get; set; }
+    [PluginService, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+    private T? Service { get; }
 
     public static T GetService(IDalamudPluginInterface pluginInterface)
     {
