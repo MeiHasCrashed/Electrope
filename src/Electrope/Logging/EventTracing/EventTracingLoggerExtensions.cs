@@ -13,7 +13,7 @@ namespace Electrope.Logging.EventTracing;
 public static class EventTracingLoggerExtensions
 {
     [PublicAPI]
-    public static ILoggingBuilder AddEventTracingLogger(this ILoggingBuilder builder, Guid providerId)
+    public static ILoggingBuilder AddEventTracingLogger(this ILoggingBuilder builder, Guid providerId, bool useTraceSpyFormat = false)
     {
         // EventTracing is only supported on Windows (ETW)
         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -22,7 +22,7 @@ public static class EventTracingLoggerExtensions
         builder.Services.TryAddSingleton<EventTracingProvider>(_ => new EventTracingProvider(providerId));
         builder.Services.TryAddEnumerable(
             ServiceDescriptor.Singleton<ILoggerProvider, EventTracingLoggerProvider>(provider =>
-                new EventTracingLoggerProvider(provider.GetRequiredService<EventTracingProvider>())
+                new EventTracingLoggerProvider(provider.GetRequiredService<EventTracingProvider>(), useTraceSpyFormat)
             ));
         return builder;
     }

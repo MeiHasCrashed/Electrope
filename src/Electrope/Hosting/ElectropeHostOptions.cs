@@ -25,4 +25,11 @@ public class ElectropeHostOptions
     /// <remarks>This only works on OSPlatform.Windows, and will be a no-op everywhere else.</remarks>
     /// </summary>
     public string? EventTracingGuid { get; init; }
+
+    /// <summary>
+    /// Sets whether to use a formatting that is compatible with Mei's TraceSpy fork for EventTracing logs.
+    /// This will format logs in a way that TraceSpy can display them in a better way.
+    /// </summary>
+    /// <remarks>This should only be enabled on the fork, otherwise you loose information. Defaults to false.</remarks>
+    public bool UseTraceSpyFormatting { get; init; }
 }

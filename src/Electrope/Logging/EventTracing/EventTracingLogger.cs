@@ -6,11 +6,21 @@ using Microsoft.Extensions.Logging;
 
 namespace Electrope.Logging.EventTracing;
 
-public class EventTracingLogger(string name, EventTracingProvider provider) : ILogger
+public class EventTracingLogger(string name, EventTracingProvider provider, bool traceSpyFormat = false) : ILogger
 {
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
     {
         if (!IsEnabled(logLevel)) return;
+        if (traceSpyFormat)
+        {
+            var traceSpyMessage = $"[{name}] {state}";
+            if (exception is not null)
+            {
+                traceSpyMessage += Environment.NewLine + exception;
+            }
+            provider.WriteString(logLevel, traceSpyMessage);
+            return;
+        }
         var message = $"[{logLevel.ToString()}] [{name}] {state}";
         if (exception is not null)
         {

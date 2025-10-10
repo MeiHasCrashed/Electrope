@@ -48,7 +48,7 @@ public static class ElectropeHost
         if (options.EventTracingGuid is not null)
         {
             var guid = Guid.Parse(options.EventTracingGuid);
-            builder.Logging.AddEventTracingLogger(guid);
+            builder.Logging.AddEventTracingLogger(guid, options.UseTraceSpyFormatting);
         }
 
         builder.Services

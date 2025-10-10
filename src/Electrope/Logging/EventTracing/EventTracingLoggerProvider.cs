@@ -7,12 +7,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Electrope.Logging.EventTracing;
 
-public sealed class EventTracingLoggerProvider(EventTracingProvider provider) : ILoggerProvider
+public sealed class EventTracingLoggerProvider(EventTracingProvider provider, bool useTraceSpyFormat = false) : ILoggerProvider
 {
     private readonly ConcurrentDictionary<string, EventTracingLogger> _loggers = new(StringComparer.OrdinalIgnoreCase);
 
     public ILogger CreateLogger(string categoryName) =>
-        _loggers.GetOrAdd(categoryName, new EventTracingLogger(categoryName, provider));
+        _loggers.GetOrAdd(categoryName, new EventTracingLogger(categoryName, provider, useTraceSpyFormat));
 
     public void Dispose()
     {
