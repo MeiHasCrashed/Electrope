@@ -259,7 +259,17 @@ public sealed class Mediator(ILogger<Mediator> logger, TimeSpan? timeout = null)
     {
         while (!cancellationToken.IsCancellationRequested && !_disposed)
         {
-            var messageContainer = _queue.Take(cancellationToken);
+            MessageContainer messageContainer;
+            try
+            {
+                messageContainer = _queue.Take(cancellationToken);
+            }
+            catch (InvalidOperationException)
+            {
+                // We can ignore this, it means the collection has been marked as complete for adding and empty.
+                break;
+            }
+
             if (timeout == null)
             {
                 try
