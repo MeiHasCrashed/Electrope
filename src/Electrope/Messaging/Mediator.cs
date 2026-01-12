@@ -53,7 +53,7 @@ public sealed class Mediator(ILogger<Mediator> logger, TimeSpan? timeout = null)
                 return;
             }
 
-            if (subscribers.Exists(x => x.Handler == (Delegate)handler))
+            if (subscribers.Exists(x => x.Handler == (Action<IMessage>)(Delegate)handler))
             {
                 throw new InvalidOperationException($"Handler {handler.Method.Name} is already subscribed to {messageType} in {subscriber.GetType()}.");
             }
@@ -83,7 +83,7 @@ public sealed class Mediator(ILogger<Mediator> logger, TimeSpan? timeout = null)
                 return;
             }
 
-            subscribers.RemoveAll(x => x.Subscriber == subscriber && x.Handler == (Delegate)handler);
+            subscribers.RemoveAll(x => x.Subscriber == subscriber && x.Handler == (Action<IMessage>)(Delegate)handler);
             if (subscribers.Count == 0)
             {
                 _subscriptions.Remove(messageType);
